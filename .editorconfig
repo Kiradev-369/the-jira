@@ -1,0 +1,6 @@
+root = true
+[*]
+charsetn = uft-8
+end_of_line = lf
+indent_style = tab
+insert_final_newline = trim_trailing_whitespace = true

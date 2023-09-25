@@ -1,0 +1,114 @@
+import React from "react";
+// import css from "./login.module.scss";
+import { Layout, Button, Input } from "antd";
+import {
+  UserOutlined,
+  LockOutlined,
+  TwitterOutlined,
+  FacebookOutlined,
+} from "@ant-design/icons";
+import { withFormik } from "formik";
+import * as Yup from "yup";
+
+const { Sider, Content } = Layout;
+function Login(props) {
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    props;
+  return (
+    <Layout>
+      <Sider
+        width={window.innerWidth / 2}
+        style={{
+          height: window.innerHeight,
+          backgroundImage: "url(https://picsum.photos/2000)",
+          backgroundSize: "100%",
+        }}
+      ></Sider>
+      <Content>
+        <form
+          onSubmit={handleSubmit}
+          className="container"
+          style={{ height: window.innerHeight }}
+        >
+          <div
+            className="d-flex flex-column justify-content-center align-items-center"
+            style={{ height: window.innerHeight }}
+          >
+            <h3 className="text-center">{props.displayName}</h3>
+            <div className="d-flex mt-3">
+              <Input
+                onChange={handleChange}
+                style={{ width: "100%", minWidth: 300 }}
+                name="email"
+                size="large"
+                placeholder="email"
+                prefix={<UserOutlined />}
+              />
+            </div>
+            <div className="text-danger">{errors.email}</div>
+            <div className="d-flex mt-3">
+              <Input
+                onChange={handleChange}
+                style={{ width: "100%", minWidth: 300 }}
+                type="password"
+                name="password"
+                size="large"
+                placeholder="password"
+                prefix={<LockOutlined />}
+              />
+            </div>
+            <div className="text-danger">{errors.password}</div>
+            <Button
+              htmlType="submit"
+              size="large"
+              style={{
+                width: 300,
+                backgroundColor: "rgb(102,107,223)",
+                color: "#fff",
+              }}
+              className="mt-5"
+            >
+              Login
+            </Button>
+            <div className="social mt-3 d-flex">
+              <Button
+                className="mr-3"
+                style={{ backgroundColor: "rgb(59,89,152)" }}
+                type="primary"
+                shape="circle"
+                icon={<FacebookOutlined />}
+                size={"large"}
+              />
+              <Button
+                type="primary"
+                shape="circle"
+                icon={<TwitterOutlined />}
+                size={"large"}
+              />
+            </div>
+          </div>
+        </form>
+      </Content>
+    </Layout>
+  );
+}
+const mapFormikToProps = withFormik({
+  mapPropsToValues: () => ({
+    email: "",
+    password: "",
+  }),
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .required("Email is required!")
+      .email("email is invalid!"),
+    password: Yup.string()
+      .min(6, "password must have min 6 charaters")
+      .max(32, "password must have max 32 charaters"),
+  }),
+  handleSubmit: (values, { setSubmitting }) => {
+    console.log(values);
+  },
+  displayName: "Login",
+})(Login);
+
+export default mapFormikToProps;
