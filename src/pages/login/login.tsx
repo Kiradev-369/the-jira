@@ -9,9 +9,20 @@ import {
 } from "@ant-design/icons";
 import { withFormik } from "formik";
 import * as Yup from "yup";
+import { connect } from "react-redux";
+import { USER_SIGNIN_API } from "../../const/cyberbugs/cyberbugs";
+
 
 const { Sider, Content } = Layout;
-function Login(props) {
+interface LoginProps {
+  values: any;
+  touched: any;
+  errors: any;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+function Login(props: LoginProps) {
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
     props;
   return (
@@ -34,7 +45,7 @@ function Login(props) {
             className="d-flex flex-column justify-content-center align-items-center"
             style={{ height: window.innerHeight }}
           >
-            <h3 className="text-center">{props.displayName}</h3>
+            <h3 className="text-center">Login</h3>
             <div className="d-flex mt-3">
               <Input
                 onChange={handleChange}
@@ -100,15 +111,25 @@ const mapFormikToProps = withFormik({
   validationSchema: Yup.object().shape({
     email: Yup.string()
       .required("Email is required!")
-      .email("email is invalid!"),
+      .email("Email is invalid!"),
     password: Yup.string()
-      .min(6, "password must have min 6 charaters")
-      .max(32, "password must have max 32 charaters"),
+      .min(6, "Password must have at least 6 characters")
+      .max(32, "Password must have at most 32 characters"),
   }),
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { props }) => {
+    // const action = {
+    //   type: USER_SIGNIN_API,
+    //   userLogin: {
+    //     email: values.email,
+    //     password: values.password,
+    //   },
+    // };
+    // props.dispatch(action);
     console.log(values);
+    console.log("props",props);
   },
   displayName: "Login",
 })(Login);
 
-export default mapFormikToProps;
+
+export default connect()(mapFormikToProps);

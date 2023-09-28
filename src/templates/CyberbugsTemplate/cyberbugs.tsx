@@ -2,7 +2,7 @@ import React from "react";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
-function LoginTemplate() {
+function CyberbugsTemplate() {
   return (
     <div>
       <Suspense fallback={<>Loading...</>}>
@@ -12,4 +12,4 @@ function LoginTemplate() {
   );
 }
 
-export default LoginTemplate;
+export default CyberbugsTemplate;
