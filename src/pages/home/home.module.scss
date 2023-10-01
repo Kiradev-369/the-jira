@@ -1,4 +1,4 @@
-.body {
+.main-home {
   padding: 25px 32px 50px 334px;
 }
 
@@ -7,22 +7,17 @@
   position: fixed;
   top: 0px;
   left: 0px;
-  overflow-x: hidden;
   height: 100vh;
   width: 64px;
   background: rgb(7, 71, 166);
-  transition: all 0.1s ease 0s;
-  transform: translateZ(0px);
-  a {
-    color: #fff;
-    text-decoration: none;
+  .aside-link {
     background-color: transparent;
-  }
-  i {
-    display: inline-block;
-    padding: 10px;
-    cursor: pointer;
-    color: #fff;
+    i {
+      display: inline-block;
+      padding: 10px;
+      cursor: pointer;
+      color: #fff;
+    }
   }
 }
 
@@ -37,14 +32,14 @@
   background: rgb(244, 245, 247);
   border-right: 1px solid rgb(223, 225, 230);
   overflow: hidden auto;
-  i {
-    font-size: 50px;
-    color: rgb(255, 86, 48);
-  }
-  .sidebar-top {
+  .sidebar-logo {
     display: flex;
     padding: 24px 4px;
-    .sidebar-top-text {
+    i {
+      font-size: 50px;
+      color: #0747A6;
+    }
+    .sidebar-top-name {
       padding: 3px 0px 0px 10px;
       p {
         color: rgb(66, 82, 110);
@@ -59,49 +54,31 @@
       }
     }
   }
-  .sidebar-kanban-board {
-    position: relative;
-    display: flex;
-    padding: 8px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    user-select: none;
-    text-decoration: none;
-    i {
-      margin-right: 15px;
-      font-size: 20px;
-      display: inline-block;
-      color: rgb(66, 82, 110);
-    }
-    p {
-      color: rgb(66, 82, 110);
-    }
-  }
-  .sidebar-kanban-board:hover {
-    color: rgb(0, 82, 204);
-    background: rgb(235, 236, 240);
-  }
-  .dash {
-    margin-top: 17px;
-    padding-top: 18px;
-    border-top: 1px solid rgb(193, 199, 208);
-  }
   .page {
     position: relative;
     display: flex;
     padding: 8px 12px;
     border-radius: 3px;
-    user-select: none;
-    cursor: not-allowed;
+    cursor: pointer;
+    .page-title {
+      color: rgb(66, 82, 110);
+      display: flex;
+    }
+    .page-title:hover{
+      color: rgb(7, 71, 166);
+    }
     i {
       margin-right: 15px;
       font-size: 20px;
-      color: rgb(66, 82, 110);
+      display: inline-block;
+      // color: rgb(66, 82, 110);
     }
-    p {
-      padding-top: 2px;
-      font-size: 14.7px;
-    }
+  }
+
+  .dash {
+    margin-top: 17px;
+    padding-top: 18px;
+    border-top: 1px solid rgb(193, 199, 208);
   }
 }
 
@@ -160,10 +137,10 @@
   }
 }
 
-.content {
+.progress {
   display: flex;
   margin: 26px -5px 0px;
-  .card {
+  .progress-card {
     display: flex;
     flex-direction: column;
     margin: 0px 5px;
