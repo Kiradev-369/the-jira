@@ -1,0 +1,85 @@
+.main-home {
+  padding: 25px 32px 50px 334px;
+}
+
+.title-top {
+  color: rgb(94, 108, 132);
+  font-size: 15px;
+}
+.title-bottom {
+  font-size: 24px;
+  font-family: CircularStdMedium;
+  font-weight: normal;
+}
+
+.board-filters {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-top: 24px;
+  .search {
+    margin-right: 18px;
+    width: 160px;
+    position: relative;
+    display: inline-block;
+    height: 32px;
+  }
+
+  .member {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0px 12px 0px 2px;
+    img {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      margin-left: -2px;
+      border-radius: 50%;
+      transition: transform 0.1s ease 0s;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    line-height: 1;
+    padding: 0px 12px;
+    cursor: pointer;
+    font-size: 14.5px;
+    background: rgb(255, 255, 255);
+    color: rgb(66, 82, 110);
+    font-weight: normal;
+    border: none;
+  }
+}
+
+.progress {
+  display: flex;
+  margin: 26px -5px 0px;
+  .progress-card {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 5px;
+    min-height: 400px;
+    width: 25%;
+    border-radius: 3px;
+    background: rgb(244, 245, 247);
+    .card-header {
+      padding: 13px 10px 17px;
+      text-transform: uppercase;
+      color: rgb(94, 108, 132);
+      font-size: 12.5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      span {
+        text-transform: lowercase;
+        font-size: 13px;
+      }
+    }
+  }
+}

@@ -1,122 +1,278 @@
 import React from "react";
 import css from "./home.module.scss";
-import { SearchOutlined } from "@ant-design/icons";
-import { Button } from "antd";
 
-function Home() {
+function ProjectDetail() {
   return (
-    <div className={css["main-home"]}>
-      <div className={css.aside}>
-        <a className={css["aside-link"]} href="#">
-          <i className="fa-brands fa-jira"></i>
-        </a>
-        <a className={css["aside-link"]} href="#">
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </a>
-        <a className={css["aside-link"]} href="#">
-          <i className="fa-solid fa-handshake-angle"></i>
-        </a>
-      </div>
-      <div className={css["sidebar"]}>
-        <div className={css["sidebar-logo"]}>
-          <i className="fa-solid fa-house-flood-water" />
-          <div className={css["sidebar-top-name"]}>
-            <p>singularity 1.0</p>
-            <span>Software project</span>
-          </div>
-        </div>
-        <div className={css.pages}>
-          <a href="#" className={css["page"]}>
-            <div className={css["page-title"]}>
-              <i className="fa-solid fa-clipboard" />
-              <p>Kanban Board</p>
-            </div>
-          </a>
-          <a href="#" className={css["page"]}>
-            <div className={css["page-title"]}>
-              <i className="fa-solid fa-gear"></i>
-              <p>Project settings</p>
-            </div>
-          </a>
-          <div className={css["dash"]}></div>
-        </div>
-        <a className={css["page"]}>
-          <div className={css["page-title"]}>
-            <i className="fa-solid fa-truck-fast" />
-            <p>Releases</p>
-          </div>
-        </a>
-        <a className={css["page"]}>
-          <div className={css["page-title"]}>
-            <i className="fa-solid fa-box-tissue" />
-            <p>Issues and filters</p>
-          </div>
-        </a>
-        <a className={css["page"]}>
-          <div className={css["page-title"]}>
-            <i className="fa-solid fa-file"></i>
-            <p>Page</p>
-          </div>
-        </a>
-        <a className={css["page"]}>
-          <div className={css["page-title"]}>
-            <i className="fa-solid fa-bug"></i>
-            <p>Reports</p>
-          </div>
-        </a>
-        <a className={css["page"]}>
-          <div className={css["page-title"]}>
-            <i className="fa-solid fa-box"></i>
-            <p>Components</p>
-          </div>
-        </a>
-      </div>
-      <div className="content">
-        <div className={css["title-top"]}>
-          Projects <span>/</span> singularity 1.0 <span>/</span>Kanban Board
-        </div>
-        <h2 className="title-bottom">Kanban board</h2>
-        <div className={css["board-filters"]}>
-          <div className={css["search"]}>
-            <Button icon={<SearchOutlined />}>Search</Button>
-          </div>
-          <div className={css["member"]}>
-            <img src="/src/assets/imgs/menber-1.jpg" />
-            <img src="/src/assets/imgs/member-2.jpg" />
-            <img src="/src/assets/imgs/member-3.jpg" />
-          </div>
-          <button>Only My Issues</button>
-          <button>Recently Updated</button>
-        </div>
-        <div className={css["progress"]}>
-          <div className={css["progress-card"]}>
-            <div className={css["card-header"]}>
-              Backlog <span>5</span>
-              <div className={css["card-main"]}></div>
-            </div>
-          </div>
-          <div className={css["progress-card"]}>
-            <div className={css["card-header"]}>
-              Selected for development <span>2</span>
-              <div className={css["card-main"]}></div>
-            </div>
-          </div>
-          <div className={css["progress-card"]}>
-            <div className={css["card-header"]}>
-              In progress <span>1</span>
-              <div className={css["card-main"]}></div>
-            </div>
-          </div>
-          <div className={css["progress-card"]}>
-            <div className={css["card-header"]}>
-              Done <span>1</span>
-              <div className={css["card-main"]}></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="main">
+      <h2 className="mb-5">Project management</h2>
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              id <i className="fa fa-caret-down"></i>
+            </th>
+            <th scope="col">
+              projectName <i className="fa fa-caret-down"></i>
+            </th>
+            <th scope="col">
+              category <i className="fa fa-caret-down"></i>
+            </th>
+            <th scope="col">creator</th>
+            <th scope="col">members</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <img src="/src/assets/imgs/menber-1.jpg" />
+                <img src="/src/assets/imgs/member-2.jpg" />
+                <img src="/src/assets/imgs/member-3.jpg" />
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>khoi nghiep</td>
+            <td>Du an web</td>
+            <td>
+              <span className={css["creator"]}>Nguyen Van A</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <img src="/src/assets/imgs/menber-1.jpg" />
+                <img src="/src/assets/imgs/member-3.jpg" />
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">3</th>
+            <td>tsuami</td>
+            <td>Du an di dong</td>
+            <td>
+              <span className={css["creator"]}>Chau Khai Phong</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <img src="/src/assets/imgs/menber-1.jpg" />
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>Anh hung ban phim</td>
+            <td>Du an phan mem</td>
+            <td>
+              <span className={css["creator"]}>Khai</span>
+            </td>
+            <td>
+              <div className={css["member"]}>
+                <span>
+                  <i className="fa fa-plus"></i>
+                </span>
+              </div>
+            </td>
+            <td>
+              <button className="btn btn-primary mr-3">
+                <i className="fa fa-edit"></i>
+              </button>
+              <button className="btn btn-danger">
+                <i className="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <nav
+        aria-label="Page navigation example"
+        className="d-flex justify-content-end"
+      >
+        <ul className="pagination">
+          <li className="page-item">
+            <a className="page-link" href="#">
+              Previous
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              1
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              2
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              3
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
 
-export default Home;
+export default ProjectDetail;

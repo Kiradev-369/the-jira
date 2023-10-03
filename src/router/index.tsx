@@ -3,6 +3,7 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import BaseTemplate from "../templates/BaseTemplate/BaseTemplate";
 import Register from "../pages/register/register";
+import ProjectDetail from "../pages/project-detail/project-detail";
 
 //* lazy(load)
 const Home = lazy(() => import("../pages/home/home"));
@@ -18,13 +19,17 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "login",
-        element: <Login />,
+        path: "project-detail/:projectId",
+        element: <ProjectDetail />,
       },
-      {
-        path: "register",
-        element: <Register/>
-      }
     ],
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "register",
+    element: <Register />,
   },
 ]);
