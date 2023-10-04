@@ -4,41 +4,84 @@ import { getAllProjects } from "../../services/project.service";
 import { useAppSelector } from "../../redux/config-store";
 import { useDispatch } from "react-redux";
 import { setListProject } from "../../redux/slices/project.slice";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useParams } from "react-router-dom";
+import { convertLegacyProps } from "antd/es/button";
+type Tparams = {
+  page: string;
+};
 function ProjectDetail() {
-  const listProject=useAppSelector((state)=>{
-    return state.projectReducer.listProject
+  const listProject = useAppSelector((state) => {
+    return state.projectReducer.listProject;
   });
-  console.log(listProject)
-  const dispatch=useDispatch();
+  console.log(listProject);
+  const dispatch = useDispatch();
+  const param = useParams<Tparams>();
+  console.log(param.page);
 
-  useEffect(()=>{
-    (async()=>{
-      const resp= await getAllProjects();
+  useEffect(() => {
+    (async () => {
+      const resp = await getAllProjects();
       console.log(resp);
       dispatch(setListProject(resp.content));
-      console.log(listProject)
-    })()
-    
-  },[]);
-  const renderPage=()=>{
-    let listPage=[];
-    let totalPage=Math.ceil(listProject.length/10);
-    for(let i=1;i<=totalPage;i++){
+      console.log(listProject);
+    })();
+  }, []);
+  const renderPage = () => {
+    let listPage = [];
+    let totalPage = Math.ceil(listProject.length / 10);
+    for (let i = 1; i <= totalPage; i++) {
       listPage.push(i);
-    };
-    return listPage.map((page,index)=>{
-      return  <li key={index} className="page-item">
-      <NavLink className="page-link" to={`/project-management/${page}`}>
-        {page}
-      </NavLink>
-    </li> 
-    })
-  }
+    }
+    return listPage.map((page, index) => {
+      return (
+        <li key={index} className="page-item">
+          <NavLink className="page-link" to={`/project-management/${page}`}>
+            {page}
+          </NavLink>
+        </li>
+      );
+    });
+  };
+  const renderProject = () => {
+    console.log(listProject);
+    let newListProject = listProject.slice(
+      Number(param.page) * 10 - 10,
+      Number(param.page) * 10,
+    );
+    console.log(newListProject);
+    return newListProject.map((project: any, index) => {
+      return (
+        <tr key={index}>
+          <th scope="row">{project.id}</th>
+          <td>{project.projectName}</td>
+          <td>{project.categoryName}</td>
+          <td>
+            <span className={css["creator"]}>{project.creator.name}</span>
+          </td>
+          <td>
+            <div className={css["member"]}>
+              {project.members.map((member: any, index: number) => {
+                return <img key={index} src={member.avatar} />;
+              })}
+              <span>
+                <i className="fa fa-plus"></i>
+              </span>
+            </div>
+          </td>
+          <td>
+            <button className="btn btn-primary mr-3">
+              <i className="fa fa-edit"></i>
+            </button>
+            <button className="btn btn-danger">
+              <i className="fa fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  };
   return (
     <div className="main">
-
       <h2 className="mb-5">Project management</h2>
       <table className="table">
         <thead>
@@ -58,7 +101,7 @@ function ProjectDetail() {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {/* <tr>
             <th scope="row">1</th>
             <td>Anh hung ban phim</td>
             <td>Du an phan mem</td>
@@ -271,7 +314,8 @@ function ProjectDetail() {
                 <i className="fa fa-trash-alt"></i>
               </button>
             </td>
-          </tr>
+          </tr> */}
+          {renderProject()}
         </tbody>
       </table>
       <nav
@@ -284,9 +328,7 @@ function ProjectDetail() {
               Previous
             </a>
           </li>
-          {
-            renderPage()
-          }
+          {renderPage()}
           <li className="page-item">
             <a className="page-link" href="#">
               Next
