@@ -21,19 +21,19 @@ function Register() {
             <form>
               <h1 className={css["form-heading"]}>Register</h1>
               <div className={css["inputbox"]}>
-                <input type="text" />
+                <input required type="text" />
                 <span>Email</span>
               </div>
               <div className={css["inputbox"]}>
-                <input type="password" />
+                <input required type="password" />
                 <span>Password</span>
               </div>
               <div className={css["inputbox"]}>
-                <input type="text" />
+                <input required type="text" />
                 <span>Phone Number</span>
               </div>
               <div className={css["inputbox"]}>
-                <input type="text" />
+                <input required type="text" />
                 <span>Name</span>
               </div>
               <div className={css["inputbox"]}>
