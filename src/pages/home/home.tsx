@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./home.module.scss";
+import { getAllProjects } from "../../services/project.service";
+import { useAppSelector } from "../../redux/config-store";
+import { useDispatch } from "react-redux";
+import { setListProject } from "../../redux/slices/project.slice";
+import { NavLink } from "react-router-dom";
 
 function ProjectDetail() {
+  const listProject=useAppSelector((state)=>{
+    return state.projectReducer.listProject
+  });
+  console.log(listProject)
+  const dispatch=useDispatch();
+
+  useEffect(()=>{
+    (async()=>{
+      const resp= await getAllProjects();
+      console.log(resp);
+      dispatch(setListProject(resp.content));
+      console.log(listProject)
+    })()
+    
+  },[]);
+  const renderPage=()=>{
+    let listPage=[];
+    let totalPage=Math.ceil(listProject.length/10);
+    for(let i=1;i<=totalPage;i++){
+      listPage.push(i);
+    };
+    return listPage.map((page,index)=>{
+      return  <li key={index} className="page-item">
+      <NavLink className="page-link" to={`/project-management/${page}`}>
+        {page}
+      </NavLink>
+    </li> 
+    })
+  }
   return (
     <div className="main">
+
       <h2 className="mb-5">Project management</h2>
       <table className="table">
         <thead>
@@ -249,21 +284,9 @@ function ProjectDetail() {
               Previous
             </a>
           </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              1
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              2
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              3
-            </a>
-          </li>
+          {
+            renderPage()
+          }
           <li className="page-item">
             <a className="page-link" href="#">
               Next

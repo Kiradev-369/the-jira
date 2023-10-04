@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/project-management/:page",
+        element: <Home />,
+      },
+      {
         path: "project-detail/:projectId",
         element: <ProjectDetail />,
       },
