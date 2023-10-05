@@ -28,19 +28,76 @@ function Home() {
     })();
   }, [param.page]);
   const renderPage = () => {
-    let listPage = [];
+    let listPage: any = [];
     let totalPage = Math.ceil(listProject.length / 10);
-    for (let i = 1; i <= totalPage; i++) {
-      listPage.push(i);
+    if (totalPage <= 7) {
+      for (let i = 1; i <= totalPage; i++) {
+        listPage.push(i);
+      }
+    } else {
+      if (param.page == "1" || param.page == "2" || param.page == "3") {
+        listPage = [1, 2, 3, 4, 5, "...", totalPage];
+      } else if (
+        param.page == String(totalPage) ||
+        param.page == String(totalPage - 1) ||
+        param.page == String(totalPage - 2)
+      ) {
+        listPage = [
+          1,
+          "...",
+          totalPage - 4,
+          totalPage - 3,
+          totalPage - 2,
+          totalPage - 1,
+          totalPage,
+        ];
+      } else if (param.page == "4") {
+        listPage = [1, 2, 3, 4, 5, 6, "...", totalPage];
+      } else if (param.page == String(totalPage - 3)) {
+        listPage = [
+          1,
+          "...",
+          totalPage - 5,
+          totalPage - 4,
+          totalPage - 3,
+          totalPage - 2,
+          totalPage - 1,
+          totalPage,
+        ];
+      } else {
+        listPage = [
+          1,
+          "...",
+          Number(param.page) - 2,
+          Number(param.page) - 1,
+          param.page,
+          Number(param.page) + 1,
+          Number(param.page) + 2,
+          "...",
+          totalPage,
+        ];
+      }
     }
-    return listPage.map((page, index) => {
-      return (
-        <li key={index} className="page-item">
-          <NavLink className="page-link" to={`/project-management/${page}`}>
-            {page}
-          </NavLink>
-        </li>
-      );
+
+    return listPage.map((page: any, index: any) => {
+      if (page == "...") {
+        return (
+          <li key={index} className="page-item">
+            <a href="#" className="page-link">
+              {" "}
+              {page}
+            </a>
+          </li>
+        );
+      } else {
+        return (
+          <li key={index} className="page-item">
+            <NavLink className="page-link" to={`/project-management/${page}`}>
+              {page}
+            </NavLink>
+          </li>
+        );
+      }
     });
   };
   const renderProject = () => {
