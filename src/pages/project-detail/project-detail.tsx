@@ -3,7 +3,7 @@ import css from "./project-detail.module.scss";
 import { SearchOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
-function Home() {
+function ProjectDetail() {
   return (
     <div className="main">
       <div className="content">
@@ -54,4 +54,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default ProjectDetail;

@@ -4,20 +4,21 @@ import { getAllProjects } from "../../services/project.service";
 import { useAppSelector } from "../../redux/config-store";
 import { useDispatch } from "react-redux";
 import { setListProject } from "../../redux/slices/project.slice";
-import { NavLink, useParams } from "react-router-dom";
-import { convertLegacyProps } from "antd/es/button";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 type Tparams = {
   page: string;
 };
-function ProjectDetail() {
+function Home() {
   const listProject = useAppSelector((state) => {
     return state.projectReducer.listProject;
   });
   console.log(listProject);
   const dispatch = useDispatch();
   const param = useParams<Tparams>();
-  console.log(param.page);
-
+  const navigate = useNavigate();
+  if (!param.page) {
+    navigate("/project-management/1");
+  }
   useEffect(() => {
     (async () => {
       const resp = await getAllProjects();
@@ -25,7 +26,7 @@ function ProjectDetail() {
       dispatch(setListProject(resp.content));
       console.log(listProject);
     })();
-  }, []);
+  }, [param.page]);
   const renderPage = () => {
     let listPage = [];
     let totalPage = Math.ceil(listProject.length / 10);
@@ -340,4 +341,4 @@ function ProjectDetail() {
   );
 }
 
-export default ProjectDetail;
+export default Home;
