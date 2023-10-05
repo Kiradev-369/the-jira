@@ -78,21 +78,29 @@ function Home() {
         ];
       }
     }
-
     return listPage.map((page: any, index: any) => {
       if (page == "...") {
         return (
           <li key={index} className="page-item">
-            <a href="#" className="page-link">
-              {" "}
-              {page}
-            </a>
+            <span>{page}</span>
           </li>
         );
       } else {
         return (
           <li key={index} className="page-item">
-            <NavLink className="page-link" to={`/project-management/${page}`}>
+            <NavLink
+              className="page-link"
+              to={`/project-management/${page}`}
+              style={({ isActive }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  color: isActive ? "white" : "black",
+                  border: isActive ? "1px solid rgb(7, 71, 166)" : "none",
+                  backgroundColor: isActive ? "rgb(7, 71, 166)" : "white",
+                  borderRadius: isActive ? "5px" : "none",
+                };
+              }}
+            >
               {page}
             </NavLink>
           </li>
@@ -138,6 +146,16 @@ function Home() {
       );
     });
   };
+  const navigatePage = (num: number) => {
+    if (num == -1 && Number(param.page) > 1) {
+      navigate(`/project-management/${Number(param.page) - 1}`);
+    } else if (
+      num == 1 &&
+      Number(param.page) < Math.ceil(listProject.length / 10)
+    ) {
+      navigate(`/project-management/${Number(param.page) + 1}`);
+    }
+  };
   return (
     <div className="main">
       <h2 className="mb-5">Project management</h2>
@@ -158,223 +176,7 @@ function Home() {
             <th scope="col">action</th>
           </tr>
         </thead>
-        <tbody>
-          {/* <tr>
-            <th scope="row">1</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <img src="/src/assets/imgs/menber-1.jpg" />
-                <img src="/src/assets/imgs/member-2.jpg" />
-                <img src="/src/assets/imgs/member-3.jpg" />
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>khoi nghiep</td>
-            <td>Du an web</td>
-            <td>
-              <span className={css["creator"]}>Nguyen Van A</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <img src="/src/assets/imgs/menber-1.jpg" />
-                <img src="/src/assets/imgs/member-3.jpg" />
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="row">3</th>
-            <td>tsuami</td>
-            <td>Du an di dong</td>
-            <td>
-              <span className={css["creator"]}>Chau Khai Phong</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <img src="/src/assets/imgs/menber-1.jpg" />
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">7</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">8</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">9</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">10</th>
-            <td>Anh hung ban phim</td>
-            <td>Du an phan mem</td>
-            <td>
-              <span className={css["creator"]}>Khai</span>
-            </td>
-            <td>
-              <div className={css["member"]}>
-                <span>
-                  <i className="fa fa-plus"></i>
-                </span>
-              </div>
-            </td>
-            <td>
-              <button className="btn btn-primary mr-3">
-                <i className="fa fa-edit"></i>
-              </button>
-              <button className="btn btn-danger">
-                <i className="fa fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr> */}
-          {renderProject()}
-        </tbody>
+        <tbody>{renderProject()}</tbody>
       </table>
       <nav
         aria-label="Page navigation example"
@@ -382,15 +184,27 @@ function Home() {
       >
         <ul className="pagination">
           <li className="page-item">
-            <a className="page-link" href="#">
-              Previous
-            </a>
+            <button
+              onClick={() => {
+                navigatePage(-1);
+              }}
+              type="button"
+              className="page-link"
+            >
+              {"<<"}
+            </button>
           </li>
           {renderPage()}
           <li className="page-item">
-            <a className="page-link" href="#">
-              Next
-            </a>
+            <button
+              onClick={() => {
+                navigatePage(1);
+              }}
+              type="button"
+              className="page-link"
+            >
+              {">>"}
+            </button>
           </li>
         </ul>
       </nav>
