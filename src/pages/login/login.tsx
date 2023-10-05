@@ -220,7 +220,7 @@ function Login() {
             style={{ height: window.innerHeight }}
           >
             <h2 className="text-center">Login</h2>
-            <div style={{marginBottom: 10}} className={css["d-flex"]}>
+            <div style={{ marginBottom: 10 }} className={css["d-flex"]}>
               <input
                 style={{ width: "100%", minWidth: 300 }}
                 className="w-25"
@@ -256,14 +256,19 @@ function Login() {
                 style={{
                   width: 300,
                   backgroundColor: "rgb(102,107,223)",
-                  color: "#fff", marginBottom: 5
+                  color: "#fff",
+                  marginBottom: 5,
                 }}
                 className="btn btn-success btn-login"
                 type="submit"
               >
                 Login
               </button>
-              <NavLink style={{display: "flex", justifyContent: "end"}} className={"login-navlink"} to="/register">
+              <NavLink
+                style={{ display: "flex", justifyContent: "end" }}
+                className={"login-navlink"}
+                to="/register"
+              >
                 Register now ?
               </NavLink>
             </div>
