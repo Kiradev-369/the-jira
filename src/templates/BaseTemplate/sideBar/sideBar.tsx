@@ -30,7 +30,7 @@ function SideBar() {
               <p>Kanban Board</p>
             </div>
           </a>
-          <a href="#" className={css["page"]}>
+          <a href="/createproject" className={css["page"]}>
             <div className={css["page-title"]}>
               <i className="fa-solid fa-gear"></i>
               <p>Create Project</p>

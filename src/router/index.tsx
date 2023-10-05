@@ -2,6 +2,7 @@ import { lazy } from "react";
 //* Setup router
 import { createBrowserRouter } from "react-router-dom";
 import BaseTemplate from "../templates/BaseTemplate/BaseTemplate";
+import CreateProject from "../pages/CreateProject/CreateProject";
 
 //* lazy(load)
 const Home = lazy(() => import("../pages/home/home"));
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         path: "project-detail/:projectId",
         element: <ProjectDetail />,
       },
+      {
+        path: "/createproject",
+        element: <CreateProject/>
+      }
     ],
   },
   {

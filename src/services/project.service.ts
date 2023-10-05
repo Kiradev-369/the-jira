@@ -8,3 +8,12 @@ export const getAllProjects = async () => {
     console.log(error);
   }
 };
+
+export const projectCategory = async () => {
+  try {
+    const resp = await aixosWithAuth("/ProjectCategory");
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
