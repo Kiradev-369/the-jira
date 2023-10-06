@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from 'sweetalert2'
 import * as Y from "yup";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -10,17 +11,18 @@ export type TParamsRegister = {
   name: string;
   phoneNumber: string;
 };
+const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 const registerSchema = Y.object({
-  email: Y.string().email().required("Email bat buoc phai nhap vao"),
+  email: Y.string().email("Email is not valid!").required("Email is required"),
   name: Y.string()
-    .min(5, "Name phai lon hon 5 ki tu")
-    .max(20, "Name phai nho hon 20 ki tu")
-    .required("Bat buoc phai nhap vao name"),
+    .max(50, "Name must be less than 50 characters")
+    .required("Name is required"),
   passWord: Y.string()
-    .min(5, "Password phai lon hon 5 ki tu")
-    .max(20, "Password phai nho hon 20 ki tu")
-    .required("Bat buoc phai nhap vao password"),
-  phoneNumber: Y.string().required("Bat buoc phai nhap vao phone number"),
+    .min(6, "Password must be greater than 6 characters")
+    .max(20, "Password must be less than 20 characters")
+    .required("Password is required"),
+  phoneNumber: Y.string().required("Phone number is required")
+    .matches(phoneRegExp, 'Phone number is not valid!'),
 });
 function Register(props: any) {
   const navigate = useNavigate();
@@ -40,14 +42,24 @@ function Register(props: any) {
         name: value.name,
         email: value.email,
       };
+      console.log(data)
       signUp(data)
         .then((resp) => {
           console.log(resp);
-          alert("OK");
+          Swal.fire(
+            'Good job!',
+            'You have successfully registered!',
+            'success'
+          );
           navigate("/login");
         })
         .catch((err) => {
           console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Failure!',
+            text: 'Something went wrong!',
+          })
         });
     },
   });
@@ -111,7 +123,7 @@ function Register(props: any) {
                 )}
               </div>
               <div className={css["inputbox"]}>
-                <button className={css["button-89"]}>Sign up</button>
+                <button type="submit" className={css["button-89"]}>Sign up</button>
               </div>
             </form>
           </div>

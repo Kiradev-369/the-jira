@@ -23,6 +23,7 @@
     "redux-saga": "^1.2.3",
     "sass": "^1.68.0",
     "styled-components": "^6.0.8",
+    "sweetalert2": "^11.7.31",
     "yup": "^1.2.0"
   },
   "devDependencies": {

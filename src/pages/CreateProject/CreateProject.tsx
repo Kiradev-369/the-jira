@@ -9,7 +9,6 @@ function CreateProject() {
       console.log(editorRef.current.getContent());
     }
   };
-
   return (
     <div className={css["main"]}>
       <h3>Create Project</h3>
@@ -42,7 +41,7 @@ function CreateProject() {
           />
         </div>
         <div className="form-group">
-          <select style={{fontSize: 17}} name="categoryId" className="form-control">
+          <select style={{fontSize: 17}} name="categoryId" className="form-controlkd">
             <option value="">Software</option>
             <option value="">App</option>
             <option value="">Web</option>
