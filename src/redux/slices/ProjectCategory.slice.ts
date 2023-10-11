@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-  listProject: [],
+  projectCategory: [],
 };
 const projectCategoryReducer = createSlice({
   name: "projectCategorySlice",
   initialState: defaultState,
   reducers: {
-    setListProject: (state, action) => {
-      state.listProject = action.payload;
+    setCategoryProject: (state, action) => {
+      state.projectCategory = action.payload;
     },
   },
 });
 
-export const { setListProject } = projectCategoryReducer.actions;
+export const { setCategoryProject } = projectCategoryReducer.actions;
 export default projectCategoryReducer.reducer;

@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import projectReducer from "./slices/project.slice";
-import ProjectCategoryReducer from "./reducers/ProjectCategoryReducer";
+import projectCategoryReducer from './slices/ProjectCategory.slice'
+
 
 export const store = configureStore({
   reducer: {
-    projectReducer,
-    ProjectCategoryReducer,
+    projectReducer,projectCategoryReducer
   },
 });
 

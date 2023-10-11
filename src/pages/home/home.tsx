@@ -24,7 +24,7 @@ function Home() {
       const resp = await getAllProjects();
       console.log(resp);
       dispatch(setListProject(resp.content));
-      console.log(listProject);
+      console.log( listProject);
     })();
   }, [param.page]);
   const renderPage = () => {
