@@ -149,7 +149,7 @@ const schemaLogin = Yup.object({
   password: Yup.string()
     .required("Password is required")
     .min(6, "Must be at least 6 characters")
-    .max(10, "Must be 10 characters or less"),
+    .max(20, "Must be 20 characters or less"),
 });
 
 function Login() {
