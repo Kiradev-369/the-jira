@@ -4,7 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
 import { projectCategory } from "../../services/projectCaregory.service";
 import { setCategoryProject } from "../../redux/slices/ProjectCategory.slice";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 function CreateProject() {
   const editorRef = useRef<any>(null);
