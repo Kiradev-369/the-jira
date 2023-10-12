@@ -14,7 +14,7 @@ function CreateProject() {
   });
 
   const arrProjectCategory = useSelector(
-    (state: any) => state.projectCategoryReducer.projectCategory
+    (state: any) => state.projectCategoryReducer.projectCategory,
   );
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ function CreateProject() {
     })();
   }, []);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setProjectData({
       ...projectData,
@@ -33,7 +33,7 @@ function CreateProject() {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     // Gửi dữ liệu dự án lên máy chủ để tạo dự án mới
@@ -102,11 +102,14 @@ function CreateProject() {
             value={projectData.categoryId}
             onChange={handleInputChange}
           >
-            {arrProjectCategory.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
+            {arrProjectCategory.map((category: any) => {
+              console.log(category);
+              return (
+                <option key={category.id} value={category.id}>
+                  {category.projectCategoryName}
+                </option>
+              );
+            })}
           </select>
         </div>
         <button style={{ fontSize: 17 }} className="btn btn-info" type="submit">
@@ -118,4 +121,3 @@ function CreateProject() {
 }
 
 export default CreateProject;
-

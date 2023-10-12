@@ -1,5 +1,5 @@
 import React from "react";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import * as Y from "yup";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -21,8 +21,9 @@ const registerSchema = Y.object({
     .min(6, "Password must be greater than 6 characters")
     .max(20, "Password must be less than 20 characters")
     .required("Password is required"),
-  phoneNumber: Y.string().required("Phone number is required")
-    .matches(phoneRegExp, 'Phone number is not valid!'),
+  phoneNumber: Y.string()
+    .required("Phone number is required")
+    .matches(phoneRegExp, "Phone number is not valid!"),
 });
 function Register(props: any) {
   const navigate = useNavigate();
@@ -42,24 +43,24 @@ function Register(props: any) {
         name: value.name,
         email: value.email,
       };
-      console.log(data)
+      console.log(data);
       signUp(data)
         .then((resp) => {
           console.log(resp);
           Swal.fire(
-            'Good job!',
-            'You have successfully registered!',
-            'success'
+            "Good job!",
+            "You have successfully registered!",
+            "success",
           );
           navigate("/login");
         })
         .catch((err) => {
           console.log(err);
           Swal.fire({
-            icon: 'error',
-            title: 'Failure!',
-            text: 'Something went wrong!',
-          })
+            icon: "error",
+            title: "Failure!",
+            text: "Something went wrong!",
+          });
         });
     },
   });
@@ -123,7 +124,9 @@ function Register(props: any) {
                 )}
               </div>
               <div className={css["inputbox"]}>
-                <button type="submit" className={css["button-89"]}>Sign up</button>
+                <button type="submit" className={css["button-89"]}>
+                  Sign up
+                </button>
               </div>
             </form>
           </div>
