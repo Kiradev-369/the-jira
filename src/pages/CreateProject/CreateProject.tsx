@@ -4,6 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
 import { projectCategory } from "../../services/projectCaregory.service";
 import { setCategoryProject } from "../../redux/slices/ProjectCategory.slice";
+import Swal from "sweetalert2";
 
 function CreateProject() {
   const editorRef = useRef<any>(null);
@@ -38,23 +39,41 @@ function CreateProject() {
 
     // Gửi dữ liệu dự án lên máy chủ để tạo dự án mới
     try {
-      const response = await fetch("/api/createProject", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://jiranew.cybersoft.edu.vn/api/Project/createProject",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(projectData),
         },
-        body: JSON.stringify(projectData),
-      });
+      );
 
       if (response.ok) {
         const data = await response.json();
         // Xử lý phản hồi từ máy chủ (có thể hiển thị thông báo hoặc điều hướng đến trang khác)
-        console.log("Dự án đã được tạo:", data);
+        Swal.fire(
+          "Good job!",
+          "You created the project successfully!",
+          "success",
+        );
       } else {
+        console.log(response);
         console.error("Lỗi khi tạo dự án");
+        Swal.fire({
+          icon: "error",
+          title: "Failure!",
+          text: "Something went wrong!",
+        });
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Failure!",
+        text: "Something went wrong!",
+      });
     }
   };
 
