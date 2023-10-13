@@ -106,6 +106,7 @@ function CreateProject() {
         <div className="form-group">
           <p>Description</p>
           <Editor
+            onChange={handleInputChange}
             id={"contentDesc"}
             onInit={(evt, editor) => {
               console.log(evt);
