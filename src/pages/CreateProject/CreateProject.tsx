@@ -30,9 +30,11 @@ function CreateProject() {
     const { name, value } = event.target;
     setProjectData({
       ...projectData,
+      description: editorRef.current.getContent(),
       [name]: value,
     });
   };
+  console.log(projectData);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -51,13 +53,20 @@ function CreateProject() {
       );
 
       if (response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
         // Xử lý phản hồi từ máy chủ (có thể hiển thị thông báo hoặc điều hướng đến trang khác)
         Swal.fire(
           "Good job!",
           "You created the project successfully!",
           "success",
         );
+        setProjectData({
+          projectName: "",
+          description: "",
+          categoryId: "0",
+        });
+        let formDom: any = document.getElementById("form_create_project");
+        formDom.reset();
       } else {
         console.log(response);
         console.error("Lỗi khi tạo dự án");
@@ -80,10 +89,15 @@ function CreateProject() {
   return (
     <div className={css["main"]}>
       <h3>Create Project</h3>
-      <form className="content" onSubmit={handleSubmit}>
+      <form
+        className="content"
+        onSubmit={handleSubmit}
+        id="form_create_project"
+      >
         <div className="form-group">
           <p>Name</p>
           <input
+            style={{ fontSize: "1.5rem" }}
             className="form-control"
             name="projectName"
             value={projectData.projectName}
@@ -93,8 +107,14 @@ function CreateProject() {
         <div className="form-group">
           <p>Description</p>
           <Editor
-            onInit={(evt, editor) => (editorRef.current = editor)}
-            initialValue="<p></p>"
+            onChange={handleInputChange}
+            id={"contentDesc"}
+            onInit={(evt, editor) => {
+              console.log(evt);
+              console.log(editor);
+              editorRef.current = editor;
+            }}
+            initialValue={"<p></p>"}
             init={{
               height: 500,
               menubar: false,
@@ -121,6 +141,7 @@ function CreateProject() {
             value={projectData.categoryId}
             onChange={handleInputChange}
           >
+            <option value="">----Select project----</option>
             {arrProjectCategory.map((category: any) => {
               console.log(category);
               return (
